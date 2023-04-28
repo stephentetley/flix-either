@@ -116,9 +116,9 @@ mod Either {
     }
 
 
-    pub def either(f: a -> c, g: b -> c, x: Either[a, b]): c = match x {
-        case Left(a) => f(a)
-        case Right(b) => g(b)
+    pub def either(f: a -> c \ ef1, g: b -> c \ ef2, x: Either[a, b]): c \ {ef1, ef2} = match x {
+        case Left(a)  => checked_ecast(f(a))
+        case Right(b) => checked_ecast(g(b))
     }
 
     pub def mapLeft(f: a -> c \ ef, x: Either[a, b]): Either[c, b] \ ef = match x {
@@ -131,49 +131,46 @@ mod Either {
         case Right(b) => Right(g(b))
     }
 
-    pub def fromLeft(d: a, x: Either[a, b]): a = match x {
+    pub def fromLeft(d: a, e: Either[a, b]): a = match e {
         case Left(a) => a
         case Right(_) => d
     }
 
-    pub def fromRight(d: b, x: Either[a ,b]): b = match x {
+    pub def fromRight(d: b, e: Either[a ,b]): b = match e {
         case Left(_) => d
         case Right(b) => b
     }
 
-    pub def partition(xs: List[Either[a,b]]): (List[a], List[b]) =
-        partitionHelper(xs, ls -> ls, rs -> rs)
-
-    def partitionHelper(xs: List[Either[a,b]], k1: List[a] -> List[a], k2: List[b] -> List[b]): (List[a], List[b]) =
-        match xs {
-            case Nil => (k1(Nil), k2(Nil))
+    pub def partition(l: List[Either[a, b]]): (List[a], List[b]) =
+        def loop(xs, k1, k2) = match xs {
+            case Nil     => (k1(Nil), k2(Nil))
             case x :: rs => match x {
-                case Left(a) => partitionHelper(rs, ys -> k1(a :: ys), k2)
-                case Right(b) => partitionHelper(rs, k1, zs -> k2(b :: zs))
+                case Left(a)  => loop(rs, ys -> k1(a :: ys), k2)
+                case Right(b) => loop(rs, k1, zs -> k2(b :: zs))
             }
-        }
+        };
+        loop(l, identity, identity)
 
-    pub def lefts(xs: List[Either[a,b]]): List[a] =
-        leftsHelper(xs, zs -> zs)
 
-    def leftsHelper(xs: List[Either[a,b]], k: List[a] -> List[a]): List[a] = match xs {
-        case Nil => k(Nil)
-        case x :: rs => match x {
-            case Left(a) => leftsHelper(rs, zs -> k(a :: zs))
-            case Right(_) => leftsHelper(rs, k)
-        }
-    }
+    pub def lefts(l: List[Either[a, b]]): List[a] =
+        def loop(xs, k) = match xs {
+            case Nil     => k(Nil)
+            case x :: rs => match x {
+                case Left(a)  => loop(rs, zs -> k(a :: zs))
+                case Right(_) => loop(rs, k)
+            }
+        };
+        loop(l, identity)
 
-    pub def rights(xs: List[Either[a,b]]): List[b] =
-        rightsHelper(xs, zs -> zs)
-
-    def rightsHelper(xs: List[Either[a,b]], k: List[b] -> List[b]): List[b] = match xs {
-        case Nil => k(Nil)
-        case x :: rs => match x {
-            case Left(_) => rightsHelper(rs, k)
-            case Right(b) => rightsHelper(rs, zs -> k(b :: zs))
-        }
-    }
+    pub def rights(l: List[Either[a,b]]): List[b] =
+        def loop(xs, k) = match xs {
+            case Nil     => k(Nil)
+            case x :: rs => match x {
+                case Left(_)  => loop(rs, k)
+                case Right(b) => loop(rs, zs -> k(b :: zs))
+            }
+        };
+        loop(l, identity)
 
 
 }
