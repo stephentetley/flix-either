@@ -116,7 +116,7 @@ mod Either {
     }
 
 
-    pub def either(f: a -> c \ ef1, g: b -> c \ ef2, x: Either[a, b]): c \ {ef1, ef2} = match x {
+    pub def bimap(f: a -> c \ ef1, g: b -> c \ ef2, x: Either[a, b]): c \ {ef1, ef2} = match x {
         case Left(a)  => checked_ecast(f(a))
         case Right(b) => checked_ecast(g(b))
     }
@@ -172,5 +172,20 @@ mod Either {
         };
         loop(l, identity)
 
+    ///
+    /// Applies `f` to `a` if `r` is `Left(a)`. Otherwise does nothing.
+    ///
+    pub def forEachLeft(f: a -> Unit \ ef, e: Either[a, b]): Unit \ ef = match e {
+        case Left(a)  => f(a)
+        case Right(_) => ()
+    }
+
+    ///
+    /// Applies `f` to `a` if `r` is `Left(a)`. Otherwise does nothing.
+    ///
+    pub def forEachRight(f: b -> Unit \ ef, e: Either[a, b]): Unit \ ef = match e {
+        case Left(_)  => ()
+        case Right(b) => f(b)
+    }
 
 }
