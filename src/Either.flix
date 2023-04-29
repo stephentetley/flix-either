@@ -115,6 +115,15 @@ mod Either {
         case Right(_) => true
     }
 
+    pub def getWithDefaultLeft(d: a, e: Either[a, b]): a = match e {
+        case Left(a)  => a
+        case Right(_) => d
+    }
+
+    pub def getWithDefaultRight(d: b, e: Either[a, b]): b = match e {
+        case Left(_)  => d
+        case Right(b) => b
+    }
 
     pub def bimap(f: a -> c \ ef1, g: b -> c \ ef2, x: Either[a, b]): c \ {ef1, ef2} = match x {
         case Left(a)  => checked_ecast(f(a))
@@ -173,7 +182,7 @@ mod Either {
         loop(l, identity)
 
     ///
-    /// Applies `f` to `a` if `r` is `Left(a)`. Otherwise does nothing.
+    /// Applies `f` to `a` if `e` is `Left(a)`. Otherwise does nothing.
     ///
     pub def forEachLeft(f: a -> Unit \ ef, e: Either[a, b]): Unit \ ef = match e {
         case Left(a)  => f(a)
@@ -181,11 +190,27 @@ mod Either {
     }
 
     ///
-    /// Applies `f` to `a` if `r` is `Left(a)`. Otherwise does nothing.
+    /// Applies `f` to `a` if `e` is `Left(a)`. Otherwise does nothing.
     ///
     pub def forEachRight(f: b -> Unit \ ef, e: Either[a, b]): Unit \ ef = match e {
         case Left(_)  => ()
         case Right(b) => f(b)
+    }
+
+    ///
+    /// Returns an iterator over `e` with 1 element if e is `Left` or an empty iterator if `e` is `Right`.
+    ///
+    pub def iteratorLeft(rc: Region[r], e: Either[a, b]): Iterator[a, r, r] \ Write(r) = match e {
+        case Left(a)  => Iterator.singleton(rc, a)
+        case Right(_) => Iterator.empty(rc)
+    }
+
+    ///
+    /// Returns an iterator over `e` with 1 element if e is `Left` or an empty iterator if `e` is `Right`.
+    ///
+    pub def iteratorRightt(rc: Region[r], e: Either[a, b]): Iterator[b, r, r] \ Write(r) = match e {
+        case Left(_)  => Iterator.empty(rc)
+        case Right(b) => Iterator.singleton(rc, b)
     }
 
 }

@@ -38,4 +38,24 @@ mod TestEither {
     @test
     def isRight02(): Bool = Either.isRight(Right(1)) == true
 
+    /////////////////////////////////////////////////////////////////////////////
+    // getWithDefaultLeft                                                      //
+    /////////////////////////////////////////////////////////////////////////////
+   
+    @test
+    def getWithDefaultLeft01(): Bool = Either.getWithDefaultLeft(2, Left(1)) == 1
+
+    @test
+    def getWithDefaultLeft02(): Bool = Either.getWithDefaultLeft(2, Right(false)) == 2
+
+    /////////////////////////////////////////////////////////////////////////////
+    // getWithDefaultRight                                                     //
+    /////////////////////////////////////////////////////////////////////////////
+   
+    @test
+    def getWithDefaultRight01(): Bool = Either.getWithDefaultRight(2, Left(1)) == 2
+
+    @test
+    def getWithDefaultRight02(): Bool = Either.getWithDefaultRight(true, Right(false)) == false
+
 }
