@@ -208,7 +208,7 @@ mod Either {
     ///
     /// Returns an iterator over `e` with 1 element if e is `Left` or an empty iterator if `e` is `Right`.
     ///
-    pub def iteratorRightt(rc: Region[r], e: Either[a, b]): Iterator[b, r, r] \ r = match e {
+    pub def iteratorRight(rc: Region[r], e: Either[a, b]): Iterator[b, r, r] \ r = match e {
         case Left(_)  => Iterator.empty(rc)
         case Right(b) => Iterator.singleton(rc, b)
     }
