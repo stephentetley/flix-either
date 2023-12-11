@@ -96,7 +96,6 @@ instance Functor[Either[e]] {
 
 mod Either {
 
-    use Either
     use Either.{Left, Right}
 
     ///
