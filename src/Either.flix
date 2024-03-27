@@ -30,7 +30,7 @@ instance Hash[Either[a, b]] with Hash[a], Hash[b] {
 }
 
 
-instance Functor[Either[e]] {
+instance Functor[Either[a]] {
     pub def map(f: b -> c \ ef, x: Either[a, b]): Either[a, c] \ ef = Either.mapRight(f, x)
 }
 
