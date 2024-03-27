@@ -1,3 +1,6 @@
+### v0.1.3
+   Fixed error in `Functor` type signature - thanks Matthew!
+
 ### v0.1.2
    Removed unnecessary use statement - thanks Matthew!
 
