@@ -17,7 +17,7 @@
 ///
 /// The Either type.
 ///
-pub enum Either[a, b] with Eq, Order, ToString, Sendable {
+pub enum Either[a, b] with Eq, Order, ToString {
     case Left(a)
     case Right(b)
 }
