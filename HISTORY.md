@@ -1,3 +1,6 @@
+### v0.1.4
+   Removed `Sendable` derivation - thanks Jonathan!
+
 ### v0.1.3
    Fixed error in `Functor` type signature - thanks Matthew!
 
