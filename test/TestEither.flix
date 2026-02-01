@@ -22,40 +22,48 @@ mod TestEither {
     // isOk                                                                    //
     /////////////////////////////////////////////////////////////////////////////
 
-    @test
-    def isLeft01(): Bool = Either.isLeft(Left(1)) == true
+    @Test
+    def isLeft01(): Unit \ Assert = 
+        Assert.assertEq(expected = true, Either.isLeft(Left(1)))
 
-    @test
-    def isLeft02(): Bool = Either.isLeft(Right(1)) == false
+    @Test
+    def isLeft02(): Unit \ Assert = 
+        Assert.assertEq(expected = false, Either.isLeft(Right(1)))
 
     /////////////////////////////////////////////////////////////////////////////
     // isErr                                                                   //
     /////////////////////////////////////////////////////////////////////////////
 
-    @test
-    def isRight01(): Bool = Either.isRight(Left(1)) == false
+    @Test
+    def isRight01(): Unit \ Assert = 
+        Assert.assertEq(expected = false, Either.isRight(Left(1)))
 
-    @test
-    def isRight02(): Bool = Either.isRight(Right(1)) == true
+    @Test
+    def isRight02(): Unit \ Assert = 
+        Assert.assertEq(expected = true, Either.isRight(Right(1)))
 
     /////////////////////////////////////////////////////////////////////////////
     // getWithDefaultLeft                                                      //
     /////////////////////////////////////////////////////////////////////////////
    
-    @test
-    def getWithDefaultLeft01(): Bool = Either.getWithDefaultLeft(2, Left(1)) == 1
+    @Test
+    def getWithDefaultLeft01(): Unit \ Assert = 
+        Assert.assertEq(expected = 1, Either.getWithDefaultLeft(2, Left(1)))
 
-    @test
-    def getWithDefaultLeft02(): Bool = Either.getWithDefaultLeft(2, Right(false)) == 2
+    @Test
+    def getWithDefaultLeft02(): Unit \ Assert = 
+        Assert.assertEq(expected = 2, Either.getWithDefaultLeft(2, Right(false)))
 
     /////////////////////////////////////////////////////////////////////////////
     // getWithDefaultRight                                                     //
     /////////////////////////////////////////////////////////////////////////////
    
-    @test
-    def getWithDefaultRight01(): Bool = Either.getWithDefaultRight(2, Left(1)) == 2
+    @Test
+    def getWithDefaultRight01(): Unit \ Assert = 
+        Assert.assertEq(expected = 2, Either.getWithDefaultRight(2, Left(1)))
 
-    @test
-    def getWithDefaultRight02(): Bool = Either.getWithDefaultRight(true, Right(false)) == false
+    @Test
+    def getWithDefaultRight02(): Unit \ Assert = 
+        Assert.assertEq(expected = false, Either.getWithDefaultRight(true, Right(false)))
 
 }
