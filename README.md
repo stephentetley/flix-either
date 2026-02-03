@@ -6,7 +6,7 @@ The `Either` and `ChoiceN` data types for Flix .
 Flix standard library, but the naming of `Result` and its constructors biases
 it to be used for programming with success and errors.
 
-`Choice2` to `Choice4` are F# style alternatives to `Either` implementing
+`Choice2` to `Choice7` are F# style alternatives to `Either` implementing
 greater arities.
 
 

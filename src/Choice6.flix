@@ -170,7 +170,7 @@ mod Choice6 {
         case Choice6.F(f)   => checked_ecast(Choice6.F(f))
     }
 
-    pub def mapF(fn: e -> g \ ef, x: Choice6[a, b, c, d, e, f]): Choice6[a, b, c, d, e, g] \ ef = match x {
+    pub def mapF(fn: f -> g \ ef, x: Choice6[a, b, c, d, e, f]): Choice6[a, b, c, d, e, g] \ ef = match x {
         case Choice6.A(a)   => checked_ecast(Choice6.A(a))
         case Choice6.B(b)   => checked_ecast(Choice6.B(b))
         case Choice6.C(c)   => checked_ecast(Choice6.C(c))
@@ -181,7 +181,7 @@ mod Choice6 {
 
     pub def partition(l: List[Choice6[a, b, c, d, e, f]]): (List[a], List[b], List[c], List[d], List[e], List[f]) =
         def loop(xs, ka, kb, kc, kd, ke, kf) = match xs {
-            case Nil     => (ka(Nil), kb(Nil), kc(Nil), kd(Nil), ke(Nil))
+            case Nil     => (ka(Nil), kb(Nil), kc(Nil), kd(Nil), ke(Nil), kf(Nil))
             case x :: rs => match x {
                 case Choice6.A(a)   => loop(rs, ks -> ka(a :: ks), kb, kc, kd, ke, kf)
                 case Choice6.B(b)   => loop(rs, ka, ks -> kb(b :: ks), kc, kd, ke, kf)
@@ -248,7 +248,7 @@ mod Choice6 {
         def loop(xs, kf) = match xs {
             case Nil     => kf(Nil)
             case x :: rs => match x {
-                case Choice6.E(e)   => loop(rs, ks -> kf(e :: ks))
+                case Choice6.F(f)   => loop(rs, ks -> kf(f :: ks))
                 case _              => loop(rs, kf)
             }
         };
