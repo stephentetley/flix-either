@@ -30,23 +30,23 @@ mod Choice3 {
     ///
     /// Returns `true` iff `x` is `A(_)`.
     ///
-    pub def isA(e: Choice3[a, b, c]): Bool = match e {
+    pub def isA(x: Choice3[a, b, c]): Bool = match x {
         case Choice3.A(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `B(_)`.
+    /// Returns `true` iff `x` is `B(_)`.
     ///
-    pub def isB(e: Choice3[a, b, c]): Bool = match e {
+    pub def isB(x: Choice3[a, b, c]): Bool = match x {
         case Choice3.B(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `C(_)`.
+    /// Returns `true` iff `x` is `C(_)`.
     ///
-    pub def isC(e: Choice3[a, b, c]): Bool = match e {
+    pub def isC(x: Choice3[a, b, c]): Bool = match x {
         case Choice3.C(_)   => true
         case _              => false
     }
@@ -76,22 +76,22 @@ mod Choice3 {
         case Choice3.C(c)   => checked_ecast(f3(c))
     }
 
-    pub def mapA(f: a -> d \ ef, x: Choice3[a, b, c]): Choice3[d, b, c] \ ef = match x {
-        case Choice3.A(a)   => Choice3.A(f(a))
+    pub def mapA(fn: a -> d \ ef, x: Choice3[a, b, c]): Choice3[d, b, c] \ ef = match x {
+        case Choice3.A(a)   => Choice3.A(fn(a))
         case Choice3.B(b)   => checked_ecast(Choice3.B(b))
         case Choice3.C(c)   => checked_ecast(Choice3.C(c))
     }
 
-    pub def mapB(f: b -> d \ ef, x: Choice3[a, b, c]): Choice3[a, d, c] \ ef = match x {
+    pub def mapB(fn: b -> d \ ef, x: Choice3[a, b, c]): Choice3[a, d, c] \ ef = match x {
         case Choice3.A(a)   => checked_ecast(Choice3.A(a))
-        case Choice3.B(b)   => Choice3.B(f(b))
+        case Choice3.B(b)   => Choice3.B(fn(b))
         case Choice3.C(c)   => checked_ecast(Choice3.C(c))
     }
 
-    pub def mapC(f: c -> d \ ef, x: Choice3[a, b, c]): Choice3[a, b, d] \ ef = match x {
+    pub def mapC(fn: c -> d \ ef, x: Choice3[a, b, c]): Choice3[a, b, d] \ ef = match x {
         case Choice3.A(a)   => checked_ecast(Choice3.A(a))
         case Choice3.B(b)   => checked_ecast(Choice3.B(b))
-        case Choice3.C(c)   => Choice3.C(f(c))
+        case Choice3.C(c)   => Choice3.C(fn(c))
     }
 
 

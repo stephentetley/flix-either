@@ -29,15 +29,15 @@ mod Choice2 {
     ///
     /// Returns `true` iff `x` is `Left(_)`.
     ///
-    pub def isA(e: Choice2[a, b]): Bool = match e {
+    pub def isA(x: Choice2[a, b]): Bool = match x {
         case Choice2.A(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `Right(_)`.
+    /// Returns `true` iff `x` is `Right(_)`.
     ///
-    pub def isB(e: Choice2[a, b]): Bool = match e {
+    pub def isB(x: Choice2[a, b]): Bool = match x {
         case Choice2.B(_)   => true
         case _              => false
     }
@@ -53,21 +53,21 @@ mod Choice2 {
     }
 
     // Wrong name?
-    pub def map2(f: a -> c \ ef1, 
-                    g: b -> c \ ef2, 
+    pub def map2(f1: a -> c \ ef1, 
+                    f2: b -> c \ ef2, 
                     x: Choice2[a, b]): c \ {ef1, ef2} = match x {
-        case Choice2.A(a)   => checked_ecast(f(a))
-        case Choice2.B(b)   => checked_ecast(g(b))
+        case Choice2.A(a)   => checked_ecast(f1(a))
+        case Choice2.B(b)   => checked_ecast(f2(b))
     }
 
-    pub def mapA(f: a -> c \ ef, x: Choice2[a, b]): Choice2[c, b] \ ef = match x {
-        case Choice2.A(a)   => Choice2.A(f(a))
+    pub def mapA(fn: a -> c \ ef, x: Choice2[a, b]): Choice2[c, b] \ ef = match x {
+        case Choice2.A(a)   => Choice2.A(fn(a))
         case Choice2.B(b)   => checked_ecast(Choice2.B(b))
     }
 
-    pub def mapB(f: b -> c \ ef, x: Choice2[a, b]): Choice2[a, c] \ ef = match x {
+    pub def mapB(fn: b -> c \ ef, x: Choice2[a, b]): Choice2[a, c] \ ef = match x {
         case Choice2.A(a)   => checked_ecast(Choice2.A(a))
-        case Choice2.B(b)   => Choice2.B(f(b))
+        case Choice2.B(b)   => Choice2.B(fn(b))
     }
 
 

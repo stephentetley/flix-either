@@ -31,31 +31,31 @@ mod Choice4 {
     ///
     /// Returns `true` iff `x` is `A(_)`.
     ///
-    pub def isA(e: Choice4[a, b, c, d]): Bool = match e {
+    pub def isA(x: Choice4[a, b, c, d]): Bool = match x {
         case Choice4.A(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `B(_)`.
+    /// Returns `true` iff `x` is `B(_)`.
     ///
-    pub def isB(e: Choice4[a, b, c, d]): Bool = match e {
+    pub def isB(x: Choice4[a, b, c, d]): Bool = match x {
         case Choice4.B(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `C(_)`.
+    /// Returns `true` iff `x` is `C(_)`.
     ///
-    pub def isC(e: Choice4[a, b, c, d]): Bool = match e {
+    pub def isC(x: Choice4[a, b, c, d]): Bool = match x {
         case Choice4.C(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `D(_)`.
+    /// Returns `true` iff `x` is `D(_)`.
     ///
-    pub def isD(e: Choice4[a, b, c, d]): Bool = match e {
+    pub def isD(x: Choice4[a, b, c, d]): Bool = match x {
         case Choice4.D(_)   => true
         case _              => false
     }
@@ -92,32 +92,32 @@ mod Choice4 {
         case Choice4.D(d)   => checked_ecast(f4(d))
     }
 
-    pub def mapA(f: a -> e \ ef, x: Choice4[a, b, c, d]): Choice4[e, b, c, d] \ ef = match x {
-        case Choice4.A(a)   => Choice4.A(f(a))
+    pub def mapA(fn: a -> e \ ef, x: Choice4[a, b, c, d]): Choice4[e, b, c, d] \ ef = match x {
+        case Choice4.A(a)   => Choice4.A(fn(a))
         case Choice4.B(b)   => checked_ecast(Choice4.B(b))
         case Choice4.C(c)   => checked_ecast(Choice4.C(c))
         case Choice4.D(d)   => checked_ecast(Choice4.D(d))
     }
 
-    pub def mapB(f: b -> e \ ef, x: Choice4[a, b, c, d]): Choice4[a, e, c, d] \ ef = match x {
+    pub def mapB(fn: b -> e \ ef, x: Choice4[a, b, c, d]): Choice4[a, e, c, d] \ ef = match x {
         case Choice4.A(a)   => checked_ecast(Choice4.A(a))
-        case Choice4.B(b)   => Choice4.B(f(b))
+        case Choice4.B(b)   => Choice4.B(fn(b))
         case Choice4.C(c)   => checked_ecast(Choice4.C(c))
         case Choice4.D(d)   => checked_ecast(Choice4.D(d))
     }
 
-    pub def mapC(f: c -> e \ ef, x: Choice4[a, b, c, d]): Choice4[a, b, e, d] \ ef = match x {
+    pub def mapC(fn: c -> e \ ef, x: Choice4[a, b, c, d]): Choice4[a, b, e, d] \ ef = match x {
         case Choice4.A(a)   => checked_ecast(Choice4.A(a))
         case Choice4.B(b)   => checked_ecast(Choice4.B(b))
-        case Choice4.C(c)   => Choice4.C(f(c))
+        case Choice4.C(c)   => Choice4.C(fn(c))
         case Choice4.D(d)   => checked_ecast(Choice4.D(d))
     }
 
-    pub def mapD(f: d -> e \ ef, x: Choice4[a, b, c, d]): Choice4[a, b, c, e] \ ef = match x {
+    pub def mapD(fn: d -> e \ ef, x: Choice4[a, b, c, d]): Choice4[a, b, c, e] \ ef = match x {
         case Choice4.A(a)   => checked_ecast(Choice4.A(a))
         case Choice4.B(b)   => checked_ecast(Choice4.B(b))
         case Choice4.C(c)   => checked_ecast(Choice4.C(c))
-        case Choice4.D(d)   => Choice4.D(f(d))
+        case Choice4.D(d)   => Choice4.D(fn(d))
     }
 
 

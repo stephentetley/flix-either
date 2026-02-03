@@ -32,39 +32,39 @@ mod Choice5 {
     ///
     /// Returns `true` iff `x` is `A(_)`.
     ///
-    pub def isA(e: Choice5[a, b, c, d, e]): Bool = match e {
+    pub def isA(x: Choice5[a, b, c, d, e]): Bool = match x {
         case Choice5.A(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `B(_)`.
+    /// Returns `true` iff `x` is `B(_)`.
     ///
-    pub def isB(e: Choice5[a, b, c, d, e]): Bool = match e {
+    pub def isB(x: Choice5[a, b, c, d, e]): Bool = match x {
         case Choice5.B(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `C(_)`.
+    /// Returns `true` iff `x` is `C(_)`.
     ///
-    pub def isC(e: Choice5[a, b, c, d, e]): Bool = match e {
+    pub def isC(x: Choice5[a, b, c, d, e]): Bool = match x {
         case Choice5.C(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `D(_)`.
+    /// Returns `true` iff `x` is `D(_)`.
     ///
-    pub def isD(e: Choice5[a, b, c, d, e]): Bool = match e {
+    pub def isD(x: Choice5[a, b, c, d, e]): Bool = match x {
         case Choice5.D(_)   => true
         case _              => false
     }
 
     ///
-    /// Returns `true` iff `e` is `E(_)`.
+    /// Returns `true` iff `x` is `E(_)`.
     ///
-    pub def isE(e: Choice5[a, b, c, d, e]): Bool = match e {
+    pub def isE(x: Choice5[a, b, c, d, e]): Bool = match x {
         case Choice5.E(_)   => true
         case _              => false
     }
@@ -109,44 +109,44 @@ mod Choice5 {
         case Choice5.E(e)   => checked_ecast(f5(e))
     }
 
-    pub def mapA(f: a -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[f, b, c, d, e] \ ef = match x {
-        case Choice5.A(a)   => Choice5.A(f(a))
+    pub def mapA(fn: a -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[f, b, c, d, e] \ ef = match x {
+        case Choice5.A(a)   => Choice5.A(fn(a))
         case Choice5.B(b)   => checked_ecast(Choice5.B(b))
         case Choice5.C(c)   => checked_ecast(Choice5.C(c))
         case Choice5.D(d)   => checked_ecast(Choice5.D(d))
         case Choice5.E(e)   => checked_ecast(Choice5.E(e))
     }
 
-    pub def mapB(f: b -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[a, f, c, d, e] \ ef = match x {
+    pub def mapB(fn: b -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[a, f, c, d, e] \ ef = match x {
         case Choice5.A(a)   => checked_ecast(Choice5.A(a))
-        case Choice5.B(b)   => Choice5.B(f(b))
+        case Choice5.B(b)   => Choice5.B(fn(b))
         case Choice5.C(c)   => checked_ecast(Choice5.C(c))
         case Choice5.D(d)   => checked_ecast(Choice5.D(d))
         case Choice5.E(e)   => checked_ecast(Choice5.E(e))
     }
 
-    pub def mapC(f: c -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[a, b, f, d, e] \ ef = match x {
+    pub def mapC(fn: c -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[a, b, f, d, e] \ ef = match x {
         case Choice5.A(a)   => checked_ecast(Choice5.A(a))
         case Choice5.B(b)   => checked_ecast(Choice5.B(b))
-        case Choice5.C(c)   => Choice5.C(f(c))
+        case Choice5.C(c)   => Choice5.C(fn(c))
         case Choice5.D(d)   => checked_ecast(Choice5.D(d))
         case Choice5.E(e)   => checked_ecast(Choice5.E(e))
     }
 
-    pub def mapD(f: d -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[a, b, c, f, e] \ ef = match x {
+    pub def mapD(fn: d -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[a, b, c, f, e] \ ef = match x {
         case Choice5.A(a)   => checked_ecast(Choice5.A(a))
         case Choice5.B(b)   => checked_ecast(Choice5.B(b))
         case Choice5.C(c)   => checked_ecast(Choice5.C(c))
-        case Choice5.D(d)   => Choice5.D(f(d))
+        case Choice5.D(d)   => Choice5.D(fn(d))
         case Choice5.E(e)   => checked_ecast(Choice5.E(e))
     }
 
-    pub def mapE(f: e -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[a, b, c, d, f] \ ef = match x {
+    pub def mapE(fn: e -> f \ ef, x: Choice5[a, b, c, d, e]): Choice5[a, b, c, d, f] \ ef = match x {
         case Choice5.A(a)   => checked_ecast(Choice5.A(a))
         case Choice5.B(b)   => checked_ecast(Choice5.B(b))
         case Choice5.C(c)   => checked_ecast(Choice5.C(c))
         case Choice5.D(d)   => checked_ecast(Choice5.D(d))
-        case Choice5.E(e)   => Choice5.E(f(e))
+        case Choice5.E(e)   => Choice5.E(fn(e))
     }
 
 

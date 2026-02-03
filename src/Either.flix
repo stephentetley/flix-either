@@ -101,15 +101,15 @@ mod Either {
     ///
     /// Returns `true` iff `x` is `Left(_)`.
     ///
-    pub def isLeft(e: Either[a, b]): Bool = match e {
+    pub def isLeft(x: Either[a, b]): Bool = match x {
         case Left(_)  => true
         case Right(_) => false
     }
 
     ///
-    /// Returns `true` iff `e` is `Right(_)`.
+    /// Returns `true` iff `x` is `Right(_)`.
     ///
-    pub def isRight(e: Either[a, b]): Bool = match e {
+    pub def isRight(x: Either[a, b]): Bool = match x {
         case Left(_)  => false
         case Right(_) => true
     }
