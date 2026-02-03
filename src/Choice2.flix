@@ -42,18 +42,20 @@ mod Choice2 {
         case _              => false
     }
 
-    pub def getWithDefaultA(d: a, e: Choice2[a, b]): a = match e {
-        case Choice2.A(x)   => x
+    pub def getWithDefaultA(d: a, x: Choice2[a, b]): a = match x {
+        case Choice2.A(x1)  => x1
         case _              => d
     }
 
-    pub def getWithDefaultB(d: b, e: Choice2[a, b]): b = match e {
-        case Choice2.B(x)   => x
+    pub def getWithDefaultB(d: b, x: Choice2[a, b]): b = match x {
+        case Choice2.B(x1)  => x1
         case _              => d
     }
 
     // Wrong name?
-    pub def map2(f: a -> c \ ef1, g: b -> c \ ef2, x: Choice2[a, b]): c \ {ef1, ef2} = match x {
+    pub def map2(f: a -> c \ ef1, 
+                    g: b -> c \ ef2, 
+                    x: Choice2[a, b]): c \ {ef1, ef2} = match x {
         case Choice2.A(a)   => checked_ecast(f(a))
         case Choice2.B(b)   => checked_ecast(g(b))
     }

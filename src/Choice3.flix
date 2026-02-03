@@ -51,23 +51,26 @@ mod Choice3 {
         case _              => false
     }
 
-    pub def getWithDefaultA(d: a, e: Choice3[a, b, c]): a = match e {
-        case Choice3.A(x)   => x
+    pub def getWithDefaultA(d: a, x: Choice3[a, b, c]): a = match x {
+        case Choice3.A(x1)  => x1
         case _              => d
     }
 
-    pub def getWithDefaultB(d: b, e: Choice3[a, b, c]): b = match e {
-        case Choice3.B(x)   => x
+    pub def getWithDefaultB(d: b, x: Choice3[a, b, c]): b = match x {
+        case Choice3.B(x1)  => x1
         case _              => d
     }
 
-    pub def getWithDefaultC(d: c, e: Choice3[a, b, c]): c = match e {
-        case Choice3.C(x)   => x
+    pub def getWithDefaultC(d: c, x: Choice3[a, b, c]): c = match x {
+        case Choice3.C(x1)  => x1
         case _              => d
     }
 
     // Wrong name?
-    pub def map3(f1: a -> d \ ef1, f2: b -> d \ ef2, f3: c -> d \ ef2, x: Choice3[a, b, c]): d \ {ef1, ef2, ef3} = match x {
+    pub def map3(f1: a -> d \ ef1, 
+                    f2: b -> d \ ef2, 
+                    f3: c -> d \ ef3, 
+                    x: Choice3[a, b, c]): d \ {ef1, ef2, ef3} = match x {
         case Choice3.A(a)   => checked_ecast(f1(a))
         case Choice3.B(b)   => checked_ecast(f2(b))
         case Choice3.C(c)   => checked_ecast(f3(c))

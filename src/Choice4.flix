@@ -60,30 +60,32 @@ mod Choice4 {
         case _              => false
     }
 
-    pub def getWithDefaultA(d: a, e: Choice4[a, b, c, d]): a = match e {
-        case Choice4.A(x)   => x
+    pub def getWithDefaultA(d: a, x: Choice4[a, b, c, d]): a = match x {
+        case Choice4.A(x1)  => x1
         case _              => d
     }
 
-    pub def getWithDefaultB(d: b, e: Choice4[a, b, c, d]): b = match e {
-        case Choice4.B(x)   => x
+    pub def getWithDefaultB(d: b, x: Choice4[a, b, c, d]): b = match x {
+        case Choice4.B(x1)  => x1
         case _              => d
     }
 
-    pub def getWithDefaultC(d: c, e: Choice4[a, b, c, d]): c = match e {
-        case Choice4.C(x)   => x
+    pub def getWithDefaultC(d: c, x: Choice4[a, b, c, d]): c = match x {
+        case Choice4.C(x1)  => x1
         case _              => d
     }
 
-    pub def getWithDefaultD(d: d, e: Choice4[a, b, c, d]): d = match e {
-        case Choice4.D(x)   => x
-        case _              => d// Wrong name?
+    pub def getWithDefaultD(d: d, x: Choice4[a, b, c, d]): d = match x {
+        case Choice4.D(x1)  => x1
+        case _              => d
     }
 
     // Wrong name?
-    pub def map4(f1: a -> e \ ef1, f2: b -> e \ ef2, 
-                    f3: c -> e \ ef2, f4: d -> e \ ef2, 
-                    x: Choice4[a, b, c, d]): e \ {ef1, ef2, ef3} = match x {
+    pub def map4(f1: a -> e \ ef1, 
+                    f2: b -> e \ ef2, 
+                    f3: c -> e \ ef3, 
+                    f4: d -> e \ ef4, 
+                    x: Choice4[a, b, c, d]): e \ {ef1, ef2, ef3, ef4} = match x {
         case Choice4.A(a)   => checked_ecast(f1(a))
         case Choice4.B(b)   => checked_ecast(f2(b))
         case Choice4.C(c)   => checked_ecast(f3(c))
