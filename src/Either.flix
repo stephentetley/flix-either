@@ -124,6 +124,7 @@ mod Either {
         case Right(b) => b
     }
 
+    // Wrong name?
     pub def bimap(f: a -> c \ ef1, g: b -> c \ ef2, x: Either[a, b]): c \ {ef1, ef2} = match x {
         case Left(a)  => checked_ecast(f(a))
         case Right(b) => checked_ecast(g(b))
@@ -189,7 +190,7 @@ mod Either {
     }
 
     ///
-    /// Applies `f` to `a` if `e` is `Left(a)`. Otherwise does nothing.
+    /// Applies `f` to `a` if `e` is `Right(a)`. Otherwise does nothing.
     ///
     pub def forEachRight(f: b -> Unit \ ef, e: Either[a, b]): Unit \ ef = match e {
         case Left(_)  => ()
@@ -205,7 +206,7 @@ mod Either {
     }
 
     ///
-    /// Returns an iterator over `e` with 1 element if e is `Left` or an empty iterator if `e` is `Right`.
+    /// Returns an iterator over `e` with 1 element if e is `Right` or an empty iterator if `e` is `Left`.
     ///
     pub def iteratorRight(rc: Region[r], e: Either[a, b]): Iterator[b, r, r] \ r = match e {
         case Left(_)  => Iterator.empty(rc)
