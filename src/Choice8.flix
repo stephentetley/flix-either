@@ -15,7 +15,7 @@
  */
 
 
-mod Choice8 {
+pub mod Choice8 {
 
     ///
     /// The Choice8 type.

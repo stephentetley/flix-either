@@ -15,7 +15,7 @@
  */
 
 
-mod Choice5 {
+pub mod Choice5 {
 
     ///
     /// The Choice5 type.

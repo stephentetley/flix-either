@@ -94,7 +94,7 @@ instance Functor[Either[a]] {
 
 
 
-mod Either {
+pub mod Either {
 
     use Either.{Left, Right}
 
