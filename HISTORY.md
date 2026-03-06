@@ -1,5 +1,5 @@
 ### v0.2.0
-   Added F# style `Choice2` to `Choice7` datatypes.
+   Made module public to work with Flix's new module scheme.
 
 ### v0.1.4
    Removed `Sendable` derivation - thanks Jonathan!
